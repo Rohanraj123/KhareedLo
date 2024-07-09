@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>khareedlo-backend</artifactId>
+    <artifactId>khareedlo-frontend</artifactId>
     <packaging>jar</packaging>
 
-    <name>khareedlo-backend</name>
+    <name>khareedlo-frontend</name>
 
     <parent>
         <groupId>org.example</groupId>
@@ -16,7 +16,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>org.khareedlo.admin.KhareedLoBackendApplication</start-class>
+        <start-class>org.khareedlo.site.KhareedLoFrontendApplication</start-class>
         <java.version>9</java.version>
         <lombok.version>1.14.8</lombok.version>
         <log4jdbc.log4j2.version>1.16</log4jdbc.log4j2.version>
@@ -24,14 +24,8 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>3.3.1</version>
-        </dependency>
-
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
