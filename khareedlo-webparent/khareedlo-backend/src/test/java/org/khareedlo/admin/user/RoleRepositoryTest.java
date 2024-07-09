@@ -1,5 +1,6 @@
-package org.khareedlo.admin.user;
 /*
+package org.khareedlo.admin.user;
+
 import org.junit.jupiter.api.Test;
 import org.khareedlo.common.entity.Role;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(value = false)
 public class RoleRepositoryTest {
 
     @Autowired
@@ -36,6 +39,5 @@ public class RoleRepositoryTest {
     }
 
 }
-
 
  */

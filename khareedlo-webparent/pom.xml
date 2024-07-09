@@ -21,8 +21,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>org.example.App</start-class>
-        <java.version>9</java.version>
+        <start-class>org.khareedlo.admin.KhareedLoBackendApplication</start-class>
+        <java.version>15</java.version>
     </properties>
 
     <dependencies>
@@ -79,9 +79,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
             <version>3.3.1</version>
+            <scope>runtime</scope>
         </dependency>
+
 
     </dependencies>
 

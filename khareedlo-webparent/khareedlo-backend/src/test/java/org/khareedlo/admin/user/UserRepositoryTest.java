@@ -1,3 +1,4 @@
+/*
 package org.khareedlo.admin.user;
 
 import org.junit.jupiter.api.Test;
@@ -8,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.Rollback;
 
-/*
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Rollback(value = false)
 public class UserRepositoryTest {
 
     @Autowired
@@ -20,6 +22,7 @@ public class UserRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    /*
     @Test
     public void testCreateNewUserWithOneRole() {
         Role roleAdmin = entityManager.find(Role.class, 1);
@@ -49,6 +52,7 @@ public class UserRepositoryTest {
         assertThat(savedUser.getId()).isGreaterThan(0);
     }
 
+    /*
     @Test
     public void testListAllUsers() {
         Iterable<User> listUsers = userRepository.findAll();
@@ -88,7 +92,6 @@ public class UserRepositoryTest {
         Integer userId = 2;
         userRepository.deleteById(userId);
     }
+
 }
-
-
- */
+*/
