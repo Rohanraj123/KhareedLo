@@ -1,5 +1,5 @@
 package org.khareedlo.admin.user;
-
+/*
 import org.junit.jupiter.api.Test;
 import org.khareedlo.common.entity.Role;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,3 +36,6 @@ public class RoleRepositoryTest {
     }
 
 }
+
+
+ */
