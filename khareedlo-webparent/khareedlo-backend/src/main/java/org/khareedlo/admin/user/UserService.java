@@ -3,6 +3,7 @@ package org.khareedlo.admin.user;
 import org.khareedlo.common.entity.Role;
 import org.khareedlo.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public class UserService {
     private final UserRepository userRepository;
     @Autowired
     private final RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public UserService(
             UserRepository userRepository,
@@ -32,6 +35,11 @@ public class UserService {
     }
 
     public void save(User user) {
+        encode(user);
         userRepository.save(user);
+    }
+    private void encode(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
     }
 }

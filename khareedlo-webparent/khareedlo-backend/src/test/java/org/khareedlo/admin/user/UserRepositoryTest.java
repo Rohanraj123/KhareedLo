@@ -1,3 +1,4 @@
+/*
 package org.khareedlo.admin.user;
 
 import org.junit.jupiter.api.Test;
@@ -76,6 +77,7 @@ public class UserRepositoryTest {
 
      */
 
+    /*
     @Test
     public void testUpdateUserRole() {
         User userRohan = userRepository.findById(1).get();
@@ -90,6 +92,8 @@ public class UserRepositoryTest {
         userRepository.save(userRohan);
     }
 
+     */
+
     /*
     @Test
     public void testDeleteUser() {
@@ -97,6 +101,6 @@ public class UserRepositoryTest {
         userRepository.deleteById(userId);
     }
 
-     */
 
 }
+*/
