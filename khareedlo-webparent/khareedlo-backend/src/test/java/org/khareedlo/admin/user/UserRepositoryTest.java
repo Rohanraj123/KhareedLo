@@ -1,4 +1,3 @@
-/*
 package org.khareedlo.admin.user;
 
 import org.junit.jupiter.api.Test;
@@ -52,7 +51,6 @@ public class UserRepositoryTest {
         assertThat(savedUser.getId()).isGreaterThan(0);
     }
 
-    /*
     @Test
     public void testListAllUsers() {
         Iterable<User> listUsers = userRepository.findAll();
@@ -75,23 +73,30 @@ public class UserRepositoryTest {
         userRepository.save(userRohan);
     }
 
+
+     */
+
     @Test
     public void testUpdateUserRole() {
-        User userRohan = userRepository.findById(2).get();
-        Role roleEditor = new Role(3);
-        Role roleSalesperson = new Role(2);
+        User userRohan = userRepository.findById(1).get();
+        Role roleEditor = new Role(5);
+        Role roleSalesperson = new Role(3);
 
         userRohan.getRoles().remove(roleEditor);
+        userRohan.getRoles().remove(roleEditor);
+
         userRohan.addRole(roleSalesperson);
 
         userRepository.save(userRohan);
     }
 
+    /*
     @Test
     public void testDeleteUser() {
         Integer userId = 2;
         userRepository.deleteById(userId);
     }
 
+     */
+
 }
-*/
