@@ -1,4 +1,3 @@
-/*
 package org.khareedlo.admin.user;
 
 import org.junit.jupiter.api.Test;
@@ -101,6 +100,14 @@ public class UserRepositoryTest {
         userRepository.deleteById(userId);
     }
 
+     */
+
+    @Test
+    public void testGetUserByEmail() {
+        String email = "rajrohan88293@gmail.com";
+        User user = userRepository.getUserByEmail(email);
+
+        assertThat(user).isNotNull();
+    }
 
 }
-*/
