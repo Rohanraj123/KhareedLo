@@ -7,6 +7,8 @@
     <title>Home - KhareedLo Admin</title>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css"  th:href="@{/fontawesome/css/all.css}" />
+    <link rel="stylesheet" type="text/css"  th:href="@{/style.css}" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 
@@ -45,14 +47,20 @@
             <tbody>
                 <tr th:each="user : ${listUsers}">
                     <td>[[${user.id}]]</td>
-                    <td></td>
+                    <td><span class="fas fa-portrait fa-3x icon-dark"></span></td>
                     <td>[[${user.email}]]</td>
                     <td>[[${user.firstName}]]</td>
                     <td>[[${user.lastName}]]</td>
                     <td>[[${user.roles}]]</td>
-                    <td>[[${user.enabled}]]</td>
                     <td>
-                        Edit &nbsp; Delete
+                        <a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green" href=""></a>
+                        <a th:if="${user.enabled == false}" class="fas fa-check-circle fa-2x icon-dark" href=""></a>
+                    </td>
+                    <td>
+                        <a class="fas fa-edit fa-2x icon-green" th:href="@{'/users/edit/' + ${user.id}}"
+                        title="Edit this user"></a>
+                        &nbsp;
+                        <a class="fas fa-trash fa-2x icon-red" href=""></a>
                     </td>
                 </tr>
             </tbody>

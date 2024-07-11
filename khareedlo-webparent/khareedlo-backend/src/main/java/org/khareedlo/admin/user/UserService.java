@@ -3,10 +3,13 @@ package org.khareedlo.admin.user;
 import org.khareedlo.common.entity.Role;
 import org.khareedlo.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -35,7 +38,19 @@ public class UserService {
     }
 
     public void save(User user) {
-        encode(user);
+        boolean isUpdatingUser = (user.getId() != null);
+
+        if (isUpdatingUser) {
+            User existingUser = userRepository.findById(user.getId()).get();
+
+            if (user.getPassword().isEmpty()) {
+                user.setPassword(existingUser.getPassword());
+            } else {
+                encode(user);
+            }
+        } else {
+            encode(user);
+        }
         userRepository.save(user);
     }
     private void encode(User user) {
@@ -43,8 +58,24 @@ public class UserService {
         user.setPassword(encodedPassword);
     }
 
-    public boolean isEmailUnique(String email) {
+    public boolean isEmailUnique(Integer id, String email) {
         User userByEmail = userRepository.getUserByEmail(email);
-        return userByEmail == null;
+
+        if (userByEmail == null) return true;
+        boolean isCreatingNew = (id == null);
+
+        if (isCreatingNew) {
+            return false;
+        } else {
+            return Objects.equals(userByEmail.getId(), id);
+        }
+    }
+
+    public User get(Integer id) throws UserNotFoundException {
+        try {
+            return userRepository.findById(id).get();
+        } catch (NoSuchElementException ex) {
+            throw new UserNotFoundException("Could not find any user with ID " + id);
+        }
     }
 }
