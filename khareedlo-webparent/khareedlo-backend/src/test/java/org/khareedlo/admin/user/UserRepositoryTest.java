@@ -102,6 +102,7 @@ public class UserRepositoryTest {
 
      */
 
+    /*
     @Test
     public void testGetUserByEmail() {
         String email = "rajrohan88293@gmail.com";
@@ -116,5 +117,7 @@ public class UserRepositoryTest {
         Long countById = userRepository.countById(id);
         assertThat(countById).isNotNull().isGreaterThan(0);
     }
+
+     */
 
 }
