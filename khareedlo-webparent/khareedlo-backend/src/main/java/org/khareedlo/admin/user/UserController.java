@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,7 +55,12 @@ public class UserController {
             user.setPhotos(fileName);
             User savedUser = userService.save(user);
             String uploadDir = "user-photos/" + savedUser.getId();
+
+            FileUploadUtil.cleanDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        } else {
+            if (user.getPhotos().isEmpty()) user.setPhotos(null);
+            userService.save(user);
         }
 
         // userService.save(user);
