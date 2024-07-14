@@ -35,8 +35,8 @@ public class UserController {
     public String listByPage(
             @PathVariable(name = "pageNumber") int pageNumber,
             Model model,
-            @Param("sortField") String sortField,
-            @Param("sortDir") String sortDir
+            @RequestParam(name = "sortField", required = false, defaultValue = "firstName") String sortField,
+            @RequestParam(name = "sortDir", required = false, defaultValue = "asc") String sortDir
     ) {
         Page<User> page = userService.listByPage(pageNumber, sortField, sortDir);
         List<User> listUsers = page.getContent();
@@ -58,6 +58,7 @@ public class UserController {
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", reverseSortDir);
+
         return "users";
     }
 
