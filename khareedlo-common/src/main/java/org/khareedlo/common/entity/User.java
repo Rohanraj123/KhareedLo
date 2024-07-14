@@ -3,6 +3,9 @@ package org.khareedlo.common.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -68,5 +71,12 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", roles=" + roles +
                 '}';
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (id == null || photos == null) return "/images/defaultuser.png";
+
+        return "/user-photos/" + this.id + "/" + URLEncoder.encode(this.photos, StandardCharsets.UTF_8);
     }
 }
