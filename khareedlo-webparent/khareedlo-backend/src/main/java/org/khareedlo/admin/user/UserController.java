@@ -4,6 +4,7 @@ import org.khareedlo.admin.FileUploadUtil;
 import org.khareedlo.common.entity.Role;
 import org.khareedlo.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,9 +25,27 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
-    public String listAll(Model model) {
-         List<User> listUsers = userService.listAll();
-         model.addAttribute("listUsers", listUsers);
+    public String listFirstPage(Model model) {
+        return listByPage(1, model);
+    }
+
+    @GetMapping("/users/page/{pageNumber}")
+    public String listByPage(@PathVariable(name = "pageNumber") int pageNumber, Model model) {
+        Page<User> page = userService.listByPage(pageNumber);
+        List<User> listUsers = page.getContent();
+
+        long startCount = (long) (pageNumber - 1) * UserService.USERS_PER_PAGE+1;
+        long endCount = startCount + UserService.USERS_PER_PAGE-1;
+        if (endCount > page.getTotalElements()) {
+            endCount = page.getTotalElements();
+        }
+
+        model.addAttribute("currentPage", pageNumber);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("startCount", startCount);
+        model.addAttribute("endCount", endCount);
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listUsers", listUsers);
         return "users";
     }
 
